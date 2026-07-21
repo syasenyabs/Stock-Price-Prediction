@@ -132,6 +132,9 @@ Bu metrikler ayrıca "bir önceki günün fiyatını tahmin olarak kullanma" (na
 - Attention mekanizması veya Transformer tabanlı modellerle karşılaştırma
 - Çoklu hisse senedi / sektör verisiyle genelleme kapasitesinin test edilmesi
 
+**Not:** Bu proje eğitim ve araştırma amaçlıdır. Üretilen tahminler yatırım tavsiyesi niteliği taşımaz.
+
+
 ---
 
 
@@ -259,4 +262,3 @@ These metrics are also compared against the "using the previous day's price as t
 
 **Note:** This project is for educational and research purposes. The predictions produced do not constitute investment advice.
 
-**Not:** Bu proje eğitim ve araştırma amaçlıdır. Üretilen tahminler yatırım tavsiyesi niteliği taşımaz.
