@@ -134,4 +134,129 @@ Bu metrikler ayrıca "bir önceki günün fiyatını tahmin olarak kullanma" (na
 
 ---
 
+
+
+# Amazon Stock Price Prediction (LSTM)
+
+This project develops an LSTM (Long Short-Term Memory) neural network model to predict future price movements using Amazon's (AMZN) historical stock data. The model performs time series forecasting using OHLCV (Open, High, Low, Close, Volume) data.
+
+## Table of Contents
+- About the Project
+- Dataset
+- Technologies Used
+- Methodology
+- Setup
+- Usage
+- Model Architecture
+- Results and Evaluation
+- Project Structure
+- Ideas for Improvement
+
+## About the Project
+Stock prices exhibit complex, non-linear patterns over time. This project builds a deep learning model (LSTM) that learns patterns in historical price movements to predict future prices, and compares this model's performance against a simple reference method (naive baseline).
+
+## Dataset
+- **Source:** Amazon (AMZN) historical stock price data
+- **Columns:** Date, Open, High, Low, Close, Volume
+- **Time range:** Data is processed in chronological order, sorted by date
+- **Split ratio:**
+  - Train: 70%
+  - Validation: 15%
+  - Test: 15%
+
+**Note:** The dataset is split chronologically (not randomly), since preventing data leakage from the future into the past is critical in time series forecasting.
+
+## Technologies Used
+- Python 3
+- PyTorch
+- Pandas / NumPy
+- Matplotlib
+- scikit-learn (for metric calculations)
+
+## Methodology
+
+**Data Preprocessing**
+- The date column is converted to datetime format and the data is sorted chronologically
+- Data is split into train/validation/test sets in chronological order
+- Min-Max normalization is calculated only on the training data and applied to all sets (to prevent data leakage)
+
+**Sequence Creation**
+- Time series data is converted into input-output pairs using the sliding window method
+- Window length (seq_length): 30 days
+- Each window is used to predict the next day's OHLCV values
+
+**Model Training**
+- Training is performed with a 2-layer LSTM network
+- Loss function: MSE (Mean Squared Error)
+- Optimization: Adam
+- Early stopping is applied: if validation loss doesn't improve for a certain patience period, training stops and the best model weights are restored
+
+**Evaluation**
+- Predictions are generated on the test set
+- Predictions are inverse-scaled from the normalized scale back to actual price scale
+- MAE, RMSE, and MAPE metrics are calculated for the Close price
+- Results are compared against a simple naive baseline based on "using the previous day's price as the prediction"
+
+## Setup
+```
+pip install torch pandas numpy matplotlib scikit-learn
+```
+Place the `dataset.csv` file in the project folder (or working directory if using Colab). The file must contain at least these columns: Date, Open, High, Low, Close, Volume.
+
+## Usage
+```
+python lstm_stock_prediction.py
+```
+If using Google Colab, you need to upload the file first:
+```python
+from google.colab import files
+uploaded = files.upload()
+```
+
+## Model Architecture
+
+| Parameter | Value |
+|---|---|
+| Input size | 5 (Open, High, Low, Close, Volume) |
+| Hidden layer size | 64 |
+| Number of LSTM layers | 2 |
+| Output size | 5 |
+| Dropout | 0.2 |
+| Sequence length | 30 days |
+| Optimizer | Adam (lr=0.001) |
+| Loss function | MSE |
+| Maximum epochs | 100 |
+| Early stopping patience | 15 |
+
+## Results and Evaluation
+Model performance is evaluated on the Close price using three metrics:
+- **MAE (Mean Absolute Error):** Average absolute deviation, in original price units
+- **RMSE (Root Mean Squared Error):** A deviation measure more sensitive to large errors
+- **MAPE (Mean Absolute Percentage Error):** Percentage deviation, for comparison across different scales
+
+These metrics are also compared against the "using the previous day's price as the prediction" (naive baseline) method to test whether the model has actually learned a meaningful pattern.
+
+*(You can add your own MAE / RMSE / MAPE values and chart images from your own runs here.)*
+
+## Project Structure
+```
+.
+├── dataset.csv                    # Amazon stock data
+├── lstm_stock_prediction.py       # Main project code
+├── best_lstm_model.pt             # Best model saved during training
+├── lstm_model_final.pt            # Final (best) model weights
+├── loss_curve.png                 # Training / validation loss chart
+├── prediction_vs_actual.png       # Actual vs predicted price chart
+└── README.md
+```
+
+## Ideas for Improvement
+- Switching to using a DataLoader for mini-batch training
+- Hyperparameter optimization with different `seq_length`, `hidden_size`, `num_layers` values
+- Adding technical indicators (RSI, MACD, moving averages, etc.) as additional features
+- Comparison with attention mechanisms or Transformer-based models
+- Testing generalization capacity with multi-stock / multi-sector data
+
+**Note:** This project is for educational and research purposes. The predictions produced do not constitute investment advice.
+
 **Not:** Bu proje eğitim ve araştırma amaçlıdır. Üretilen tahminler yatırım tavsiyesi niteliği taşımaz.
