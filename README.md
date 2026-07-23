@@ -74,7 +74,7 @@ pip install torch pandas numpy matplotlib scikit-learn
 ## Kullanım
 
 ```bash
-python lstm_stock_prediction.py
+python stockprice.py
 ```
 
 Google Colab kullanıyorsanız, dosyayı önce yüklemeniz gerekir:
@@ -116,12 +116,13 @@ Bu metrikler ayrıca "bir önceki günün fiyatını tahmin olarak kullanma" (na
 ```
 .
 ├── dataset.csv                    # Amazon hisse senedi verisi
-├── lstm_stock_prediction.py       # Ana proje kodu
+├── stockprice.py       # Ana proje kodu
 ├── best_lstm_model.pt             # Eğitim sırasında kaydedilen en iyi model
 ├── lstm_model_final.pt            # Final (en iyi) model ağırlıkları
 ├── loss_curve.png                 # Eğitim / doğrulama kaybı grafiği
-├── prediction_vs_actual.png       # Gerçek vs tahmin edilen fiyat grafiği
+├── PredictionVsActual.png       # Gerçek vs tahmin edilen fiyat grafiği
 └── README.md
+└── app.py                       #streamlit(arayüz için)
 ```
 
 ## Geliştirme Fikirleri
@@ -208,7 +209,7 @@ Place the `dataset.csv` file in the project folder (or working directory if usin
 
 ## Usage
 ```
-python lstm_stock_prediction.py
+python stockprice.py
 ```
 If using Google Colab, you need to upload the file first:
 ```python
@@ -245,12 +246,13 @@ These metrics are also compared against the "using the previous day's price as t
 ```
 .
 ├── dataset.csv                    # Amazon stock data
-├── lstm_stock_prediction.py       # Main project code
+├── stockprice.py       # Main project code
 ├── best_lstm_model.pt             # Best model saved during training
 ├── lstm_model_final.pt            # Final (best) model weights
 ├── loss_curve.png                 # Training / validation loss chart
-├── prediction_vs_actual.png       # Actual vs predicted price chart
+├── PredictionVsActual.png       # Actual vs predicted price chart
 └── README.md
+└── app.py                       #streamlit(for interface)
 ```
 
 ## Ideas for Improvement
