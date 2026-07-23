@@ -116,7 +116,7 @@ Bu metrikler ayrıca "bir önceki günün fiyatını tahmin olarak kullanma" (na
 ```
 .
 ├── dataset.csv                    # Amazon hisse senedi verisi
-├── stockprice.py       # Ana proje kodu
+├── stockprice.ipynb       # Ana proje kodu
 ├── best_lstm_model.pt             # Eğitim sırasında kaydedilen en iyi model
 ├── lstm_model_final.pt            # Final (en iyi) model ağırlıkları
 ├── loss_curve.png                 # Eğitim / doğrulama kaybı grafiği
@@ -209,7 +209,7 @@ Place the `dataset.csv` file in the project folder (or working directory if usin
 
 ## Usage
 ```
-python stockprice.py
+python stockprice.ipynb
 ```
 If using Google Colab, you need to upload the file first:
 ```python
@@ -246,7 +246,7 @@ These metrics are also compared against the "using the previous day's price as t
 ```
 .
 ├── dataset.csv                    # Amazon stock data
-├── stockprice.py       # Main project code
+├── stockprice.ipynb      # Main project code
 ├── best_lstm_model.pt             # Best model saved during training
 ├── lstm_model_final.pt            # Final (best) model weights
 ├── loss_curve.png                 # Training / validation loss chart
