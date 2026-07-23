@@ -168,7 +168,7 @@ model.eval()
 
 Bu proje **eğitim ve araştırma amaçlıdır**. Burada sunulan model, tahminler ve sonuçlar **finansal tavsiye niteliği taşımaz**. Gerçek para ile alım-satım kararları almadan önce mutlaka bir finansal danışmana başvurun. Geçmiş performans, gelecekteki sonuçların garantisi değildir. Bu kodu kullanarak yapacağınız herhangi bir finansal işlemden doğacak kâr veya zarardan proje sahibi/geliştirici sorumlu tutulamaz.
 
-```
+
 
 # 📈 Stock Price Prediction — LSTM Model (PyTorch)
 
